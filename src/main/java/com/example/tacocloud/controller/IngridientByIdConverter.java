@@ -3,10 +3,12 @@ package com.example.tacocloud.controller;
 import com.example.tacocloud.model.Ingredient;
 import org.springframework.core.convert.converter.Converter;
 import com.example.tacocloud.model.Ingredient.Type;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class IngridientByIdConverter implements Converter<String, Ingredient> {
 
     private Map<String, Ingredient> ingredientMap = new HashMap<>();
