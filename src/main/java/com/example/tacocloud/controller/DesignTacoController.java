@@ -1,16 +1,13 @@
-package controller;
+package com.example.tacocloud.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import model.Ingredient;
-import model.Taco;
-import model.TacoOrder;
+import com.example.tacocloud.model.Ingredient;
+import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.model.TacoOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import model.Ingredient.Type;
+import org.springframework.web.bind.annotation.*;
+import com.example.tacocloud.model.Ingredient.Type;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,5 +56,14 @@ public class DesignTacoController {
                 .stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public String processTaco(Taco taco,
+                              @ModelAttribute TacoOrder tacoOrder) {
+        tacoOrder.addTaco(taco);
+        log.info("Processing taco: {}", taco);
+
+        return  "redirect:/orders/current";
     }
 }

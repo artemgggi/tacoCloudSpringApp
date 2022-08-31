@@ -1,4 +1,4 @@
-package model;
+package com.example.tacocloud.model;
 
 import lombok.Data;
 import java.util.List;
